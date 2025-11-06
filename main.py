@@ -6,11 +6,12 @@ from utils.settings import get_settings, Settings
 settings: Settings= get_settings()
 
 def main():
+    # github data
     github_data = load_dataset("ibragim-bad/github-repos-metadata-40M", split=settings.github_split)
     github_data_df = github_data.to_pandas()
     github_data_df = clean_dataset(github_data_df)
 
-
+    # filter ' ' languages to be N/A, this is usually due to a repo having multiple languages
     github_data_df['language'] = github_data_df['language'].astype(object).where(
         github_data_df['language'].notna(), pd.NA
     )
@@ -19,13 +20,14 @@ def main():
 
     github_data_df.dropna(subset=["language"], inplace=True) # we need only repos with code with a primary programming language
 
-    none_per_col = github_data_df.isna().sum()
-    cols_with_none = none_per_col[none_per_col > 0]
-    if not cols_with_none.empty:
-        print("Columns with None/NaN (count):")
-        print(cols_with_none.to_string())
-    else:
-        print("No columns contain None/NaN.")
+    # debug prints: check all links
+    # none_per_col = github_data_df.isna().sum()
+    # cols_with_none = none_per_col[none_per_col > 0]
+    # if not cols_with_none.empty:
+    #     print("Columns with None/NaN (count):")
+    #     print(cols_with_none.to_string())
+    # else:
+    #     print("No columns contain None/NaN.")
 
 
     # stack overflow data time
