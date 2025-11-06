@@ -8,9 +8,11 @@ This repository compares GitHub repository metadata (from the
 
 ## Package manager / how to run
 
-This project uses `uv` for running the project. You can run the main script with:
+This project uses [`uv`](https://docs.astral.sh/uv/). You can run the main script with:
 
 ```bash
+uv sync
+
 uv run main.py
 ```
 
@@ -24,6 +26,6 @@ This repository uses two main datasets.
      `load_dataset("ibragim-bad/github-repos-metadata-40M", split=...)`.
 
 2) Stack Overflow Developer Survey 
-   - Download a single year's CSV from the public Stack Overflow Developer Survey downloads page.
+   - Download a single year's CSV from the public [Stack Overflow Developer Survey downloads page.](https://survey.stackoverflow.co/)
    - Save the CSV file in the repository root (or anywhere you prefer) and point the project to it using the `.env` file 
 
