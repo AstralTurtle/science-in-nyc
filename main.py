@@ -57,6 +57,7 @@ def main():
     stack_overflow_df.dropna(inplace=True)
     # by here, repos on cleando
 
+    gh_lang_freq = github_data_df["language"].value_counts() 
 
 
 
